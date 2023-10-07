@@ -18,8 +18,9 @@ const ReactOvenPlayer = memo((props: OvenPlayerProps) => {
           minWidth: 300,
         }
       }
-      id={ovenPlayerId}
-    />
+    >
+      <div id={ovenPlayerId} />
+    </div>
   );
 });
 

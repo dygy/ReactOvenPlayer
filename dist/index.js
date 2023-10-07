@@ -35,6 +35,7 @@ const ReactOvenPlayer = (0, react_1.memo)((props) => {
     }, []);
     return (react_1.default.createElement("div", { style: props.wrapperStyles || {
             minWidth: 300,
-        }, id: ovenPlayerId }));
+        } },
+        react_1.default.createElement("div", { id: ovenPlayerId })));
 });
 exports.default = ReactOvenPlayer;
