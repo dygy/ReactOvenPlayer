@@ -10,20 +10,33 @@ const ReactOvenPlayer = memo((props: ReactOvenPlayerProps) => {
     let timeout: NodeJS.Timeout | undefined;
     const player = OvenPlayer.create(ovenPlayerId, props.config);
 
-    player.on("error", () => {
-      timeout = setTimeout(() => {
-        OvenPlayer.create(ovenPlayerId, props.config);
-      }, 1000);
+    if (props.isAutoReconnect) {
+      player.on("error", () => {
+        timeout = setTimeout(() => {
+          OvenPlayer.create(ovenPlayerId, props.config);
+        }, 1000);
+      });
+    }
+
+    player.on("stateChanged", (stateObject) => {
+      props.setState?.((state) => ({
+        ...state,
+        stateObject,
+      }));
     });
 
-    props.setState?.({
+    props.setState?.((state) => ({
+      ...state,
       instance: player,
       library: OvenPlayer,
       version: player.getVersion(),
-    });
+    }));
 
     return () => {
-      player.off("error");
+      if (props.isAutoReconnect) {
+        player.off("error");
+      }
+      player.off("stateChanged");
       OvenPlayer.removePlayer(player);
       clearTimeout(timeout);
     };

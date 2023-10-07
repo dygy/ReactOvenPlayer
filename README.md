@@ -52,3 +52,32 @@ export const Player = () => {
     )
 }
 ```
+### Props
+```wrapperStyles?: React.CSSProperties;```
+styles of player wrapper
+
+```isAutoReconnect?: boolean;```
+enable feature to auto reconnect player
+
+```config: OvenPlayerConfig;```
+OvenPlayer configurator. Just as in OvenPlayer
+
+```  
+  state?: ReactOvenPlayerState | null;
+  setState?: React.Dispatch<React.SetStateAction<ReactOvenPlayerState>>;
+```
+properties to check and control state of the player
+
+it will give you back
+```typescript
+export type ReactOvenPlayerState = {
+    library: OvenPlayer;
+    instance: OvenPlayerInstance;
+    version: string;
+    stateObject: OvenPlayerEvents["stateChanged"];
+};
+```
+1. library of ovenplayer
+2. player instance (not reactive, from ovenplayer)
+3. version of ovenplayer
+4. state object, what is current state and what is last state

@@ -1,10 +1,15 @@
-import OvenPlayer, { OvenPlayerConfig, OvenPlayerInstance } from "ovenplayer";
-import React from "react";
+import type OvenPlayer from "ovenplayer";
+import type {
+  OvenPlayerConfig,
+  OvenPlayerInstance,
+  OvenPlayerEvents,
+} from "ovenplayer";
+import type React from "react";
 
 export type ReactOvenPlayerProps = {
   config: OvenPlayerConfig;
   state?: ReactOvenPlayerState | null;
-  setState?: (state: ReactOvenPlayerState) => void;
+  setState?: React.Dispatch<React.SetStateAction<ReactOvenPlayerState>>;
   wrapperStyles?: React.CSSProperties;
   isAutoReconnect?: boolean;
 };
@@ -13,4 +18,5 @@ export type ReactOvenPlayerState = {
   library: OvenPlayer;
   instance: OvenPlayerInstance;
   version: string;
+  stateObject: OvenPlayerEvents["stateChanged"];
 };
