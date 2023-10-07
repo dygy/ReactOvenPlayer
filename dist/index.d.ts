@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import React from "react";
 import type { OvenPlayerProps } from "./types";
-declare const ReactOvenPlayer: (props: OvenPlayerProps) => JSX.Element;
+declare const ReactOvenPlayer: React.MemoExoticComponent<(props: OvenPlayerProps) => JSX.Element>;
 export default ReactOvenPlayer;

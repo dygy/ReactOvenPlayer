@@ -29,10 +29,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const ovenplayer_1 = __importDefault(require("ovenplayer"));
 const ovenPlayerId = "oven-player-id";
-const ReactOvenPlayer = (props) => {
+const ReactOvenPlayer = (0, react_1.memo)((props) => {
     (0, react_1.useEffect)(() => {
         ovenplayer_1.default.create(ovenPlayerId, Object.assign({}, props.config));
     }, []);
-    return react_1.default.createElement("div", { id: ovenPlayerId });
-};
+    return (react_1.default.createElement("div", { style: props.wrapperStyles || {
+            minWidth: 300,
+        }, id: ovenPlayerId }));
+});
 exports.default = ReactOvenPlayer;
