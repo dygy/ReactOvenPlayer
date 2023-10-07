@@ -1,11 +1,11 @@
 import React, { memo, useEffect } from "react";
 import OvenPlayer from "ovenplayer";
 
-import type { OvenPlayerProps } from "./types";
+import type { ReactOvenPlayerProps } from "./types";
 
 const ovenPlayerId = "oven-player-id";
 
-const ReactOvenPlayer = memo((props: OvenPlayerProps) => {
+const ReactOvenPlayer = memo((props: ReactOvenPlayerProps) => {
   useEffect(() => {
     const player = OvenPlayer.create(ovenPlayerId, {
       ...props.config,

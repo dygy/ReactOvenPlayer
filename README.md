@@ -7,10 +7,10 @@ npm i react-ovenplayer
 ```typescript jsx
 "use client"
 import React, {useEffect, useState} from "react";
-import ReactOvenPlayer, {OvenPlayerState} from "react-ovenplayer"
+import ReactOvenPlayer, {ReactOvenPlayerState} from "react-ovenplayer"
 
 export const Player = () => {
-    const [state, setState] = useState<OvenPlayerState | null>(null)
+    const [state, setState] = useState<ReactOvenPlayerState | null>(null)
 
     useEffect(()=>{
         state?.instance.pause()
