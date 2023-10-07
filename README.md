@@ -5,7 +5,6 @@ npm i react-ovenplayer
 ```
 ## Usage
 ```typescript jsx
-"use client"
 import React, {useEffect, useState} from "react";
 import ReactOvenPlayer, {ReactOvenPlayerState} from "react-ovenplayer"
 
@@ -54,12 +53,15 @@ export const Player = () => {
 ```
 ### Props
 ```wrapperStyles?: React.CSSProperties;```
+
 styles of player wrapper
 
 ```isAutoReconnect?: boolean;```
+
 enable feature to auto reconnect player
 
 ```config: OvenPlayerConfig;```
+
 OvenPlayer configurator. Just as in OvenPlayer
 
 ```  
