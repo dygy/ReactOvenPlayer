@@ -1,9 +1,16 @@
 import React, { memo, useEffect } from "react";
 import OvenPlayer from "ovenplayer";
 
-import type { ReactOvenPlayerProps } from "./types";
+import type { ReactOvenPlayerProps, ReactOvenPlayerState } from "./types";
 
 const ovenPlayerId = "oven-player-id";
+const pastOldState = (state: ReactOvenPlayerState | null) => {
+  if (state) {
+    return {
+      ...state,
+    };
+  } else return {};
+};
 
 const ReactOvenPlayer = memo((props: ReactOvenPlayerProps) => {
   useEffect(() => {
@@ -19,10 +26,13 @@ const ReactOvenPlayer = memo((props: ReactOvenPlayerProps) => {
     }
 
     player.on("stateChanged", (stateObject) => {
-      props.setState?.((state) => ({
-        ...state,
-        stateObject,
-      }));
+      props.setState?.(
+        (state) =>
+          ({
+            ...pastOldState(state),
+            stateObject,
+          }) as ReactOvenPlayerState,
+      );
     });
 
     props.setState?.((state) => ({
