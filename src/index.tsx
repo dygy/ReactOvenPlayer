@@ -7,15 +7,28 @@ const ovenPlayerId = "oven-player-id";
 
 const ReactOvenPlayer = memo((props: ReactOvenPlayerProps) => {
   useEffect(() => {
-    const player = OvenPlayer.create(ovenPlayerId, {
-      ...props.config,
+    let timeout: NodeJS.Timeout | undefined;
+    const player = OvenPlayer.create(ovenPlayerId, props.config);
+
+    player.on("error", () => {
+      timeout = setTimeout(() => {
+        OvenPlayer.create(ovenPlayerId, props.config);
+      }, 1000);
     });
+
     props.setState?.({
       instance: player,
       library: OvenPlayer,
       version: player.getVersion(),
     });
+
+    return () => {
+      player.off("error");
+      OvenPlayer.removePlayer(player);
+      clearTimeout(timeout);
+    };
   }, []);
+
   return (
     <div
       style={

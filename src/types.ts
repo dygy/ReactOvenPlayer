@@ -6,6 +6,7 @@ export type ReactOvenPlayerProps = {
   state?: ReactOvenPlayerState | null;
   setState?: (state: ReactOvenPlayerState) => void;
   wrapperStyles?: React.CSSProperties;
+  isAutoReconnect?: boolean;
 };
 
 export type ReactOvenPlayerState = {
