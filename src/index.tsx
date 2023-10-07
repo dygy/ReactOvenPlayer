@@ -29,4 +29,5 @@ const ReactOvenPlayer = memo((props: OvenPlayerProps) => {
   );
 });
 
+export * from "./types";
 export default ReactOvenPlayer;
