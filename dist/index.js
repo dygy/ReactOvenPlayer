@@ -31,7 +31,13 @@ const ovenplayer_1 = __importDefault(require("ovenplayer"));
 const ovenPlayerId = "oven-player-id";
 const ReactOvenPlayer = (0, react_1.memo)((props) => {
     (0, react_1.useEffect)(() => {
-        ovenplayer_1.default.create(ovenPlayerId, Object.assign({}, props.config));
+        var _a;
+        const player = ovenplayer_1.default.create(ovenPlayerId, Object.assign({}, props.config));
+        (_a = props.setState) === null || _a === void 0 ? void 0 : _a.call(props, {
+            instance: player,
+            library: ovenplayer_1.default,
+            version: player.getVersion(),
+        });
     }, []);
     return (react_1.default.createElement("div", { style: props.wrapperStyles || {
             minWidth: 300,

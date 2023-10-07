@@ -7,8 +7,13 @@ const ovenPlayerId = "oven-player-id";
 
 const ReactOvenPlayer = memo((props: OvenPlayerProps) => {
   useEffect(() => {
-    OvenPlayer.create(ovenPlayerId, {
+    const player = OvenPlayer.create(ovenPlayerId, {
       ...props.config,
+    });
+    props.setState?.({
+      instance: player,
+      library: OvenPlayer,
+      version: player.getVersion(),
     });
   }, []);
   return (
