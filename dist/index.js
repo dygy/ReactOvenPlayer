@@ -32,6 +32,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const ovenplayer_1 = __importDefault(require("ovenplayer"));
 const ovenPlayerId = "oven-player-id";
+const pastOldState = (state) => {
+    if (state) {
+        return Object.assign({}, state);
+    }
+    else
+        return {};
+};
 const ReactOvenPlayer = (0, react_1.memo)((props) => {
     (0, react_1.useEffect)(() => {
         var _a;
@@ -46,7 +53,7 @@ const ReactOvenPlayer = (0, react_1.memo)((props) => {
         }
         player.on("stateChanged", (stateObject) => {
             var _a;
-            (_a = props.setState) === null || _a === void 0 ? void 0 : _a.call(props, (state) => (Object.assign(Object.assign({}, state), { stateObject })));
+            (_a = props.setState) === null || _a === void 0 ? void 0 : _a.call(props, (state) => (Object.assign(Object.assign({}, pastOldState(state)), { stateObject })));
         });
         (_a = props.setState) === null || _a === void 0 ? void 0 : _a.call(props, (state) => (Object.assign(Object.assign({}, state), { instance: player, library: ovenplayer_1.default, version: player.getVersion() })));
         return () => {
