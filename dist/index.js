@@ -47,7 +47,9 @@ const ReactOvenPlayer = (0, react_1.memo)((props) => {
         if (props.isAutoReconnect) {
             player.on("error", () => {
                 timeout = setTimeout(() => {
-                    ovenplayer_1.default.create(ovenPlayerId, props.config);
+                    var _a;
+                    const player = ovenplayer_1.default.create(ovenPlayerId, props.config);
+                    (_a = props.setState) === null || _a === void 0 ? void 0 : _a.call(props, (state) => (Object.assign(Object.assign({}, pastOldState(state)), { instance: player })));
                 }, 1000);
             });
         }
