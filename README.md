@@ -19,6 +19,9 @@ export const Player = () => {
     return (
       <div>
           <ReactOvenPlayer
+              wrapperStyles={{
+                  minWidth: 500
+              }}
               setState={setState}
               config={{
                   autoStart: true,
