@@ -27,23 +27,25 @@ export const Player = () => {
                   showBigPlayButton: false,
                   mute: true,
                   webrtcConfig: {
-                  timeoutMaxRetry: 5,
-                  connectionTimeout: 10000,
-              },
-              sources: [
-                  {
-                      label: 'ap-webrtc',
-                      type: 'webrtc',
-                      file: `wss://url/webrtc`,
-                  },
-                  {
-                      label: 'eu-webrtc',
-                      type: 'webrtc',
-                      file: `wss://url2/webrtc`,
-                  },
-              ],
-          }} />
+                      timeoutMaxRetry: 5, 
+                      connectionTimeout: 10000,
+                  }, 
+                  sources: [
+                      {
+                          label: 'ap-webrtc', 
+                          type: 'webrtc',
+                          file: `wss://url/webrtc`,
+                      }, 
+                      {
+                          label: 'eu-webrtc', 
+                          type: 'webrtc', 
+                          file: `wss://url2/webrtc`,
+                      },
+                  ],
+              }
+          }
+          />
       </div>
-  )
+    )
 }
 ```
