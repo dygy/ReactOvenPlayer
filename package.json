@@ -1,6 +1,6 @@
 {
   "name": "react-ovenplayer",
-  "version": "0.0.7-alpha",
+  "version": "0.0.8-alpha",
   "private": false,
   "files": [
     "dist"
