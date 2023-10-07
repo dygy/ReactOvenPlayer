@@ -5,7 +5,7 @@ import type { OvenPlayerProps } from "./types";
 
 const ovenPlayerId = "oven-player-id";
 
-export default (props: OvenPlayerProps) => {
+const ReactOvenPlayer = (props: OvenPlayerProps) => {
   useEffect(() => {
     OvenPlayer.create(ovenPlayerId, {
       ...props.config,
@@ -13,3 +13,5 @@ export default (props: OvenPlayerProps) => {
   }, []);
   return <div id={ovenPlayerId} />;
 };
+
+export default ReactOvenPlayer;

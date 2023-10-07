@@ -1,6 +1,6 @@
-/// <reference types="react" />
 import OvenPlayer, { OvenPlayerConfig } from "ovenplayer";
+import type { Ref } from "react";
 export type OvenPlayerProps = {
-  config: OvenPlayerConfig;
-  ref: React.Ref<OvenPlayer>;
+    config: OvenPlayerConfig;
+    ref?: Ref<OvenPlayer>;
 };
