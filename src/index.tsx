@@ -20,7 +20,14 @@ const ReactOvenPlayer = memo((props: ReactOvenPlayerProps) => {
     if (props.isAutoReconnect) {
       player.on("error", () => {
         timeout = setTimeout(() => {
-          OvenPlayer.create(ovenPlayerId, props.config);
+          const player = OvenPlayer.create(ovenPlayerId, props.config);
+          props.setState?.(
+            (state) =>
+              ({
+                ...pastOldState(state),
+                instance: player,
+              }) as ReactOvenPlayerState,
+          );
         }, 1000);
       });
     }
