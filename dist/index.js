@@ -78,7 +78,7 @@ const ReactOvenPlayer = (0, react_1.memo)((props) => {
       player.on("qualityLevelChanged", (quality) => {
         const selectedQuality = player
           .getQualityLevels()
-          .find((elem) => elem.index === quality.currentQuality);
+          .find((elem) => elem.index == quality.currentQuality);
         onStateChange((state) =>
           Object.assign(Object.assign({}, state), {
             quality: selectedQuality,

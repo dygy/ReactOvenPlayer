@@ -1,9 +1,11 @@
-# Getting Started with ReactOvenPlayer
-## Setup
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/dygy/ReactOvenPlayer/blob/master/LICENSE) 
+[![npm version](https://img.shields.io/npm/v/react.svg?style=flat)](https://www.npmjs.com/package/react-ovenplayer) 
+# 📋 Getting Started with ReactOvenPlayer
+## 🪜 Setup
 ```bash
 npm i react-ovenplayer
 ```
-## Usage
+## 📖 Usage
 ```typescript jsx
 import React, {useEffect, useState} from "react";
 import ReactOvenPlayer, {ReactOvenPlayerState} from "react-ovenplayer"
@@ -51,7 +53,7 @@ export const Player = () => {
     )
 }
 ```
-### Props
+### 🚀 Props
 ```wrapperStyles?: React.CSSProperties;```
 
 styles of player wrapper
@@ -89,3 +91,9 @@ export type ReactOvenPlayerState = {
 5. current quality as object. Bitrate, label, index, etc.
 6. is current quality are auto
 7. volume level in number %
+
+## 📄 License
+
+React OvenPlayer is MIT licensed, as found in the [LICENSE][l] file.
+
+[l]: https://github.com/dygy/ReactOvenPlayer/blob/master/LICENSE
