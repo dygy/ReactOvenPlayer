@@ -1,5 +1,6 @@
 import type OvenPlayer from "ovenplayer";
 import type {
+  OvenPlayerQuality,
   OvenPlayerConfig,
   OvenPlayerInstance,
   OvenPlayerEvents,
@@ -19,4 +20,7 @@ export type ReactOvenPlayerState = {
   instance: OvenPlayerInstance;
   version: string;
   stateObject?: OvenPlayerEvents["stateChanged"];
+  quality?: OvenPlayerQuality;
+  isAutoQuality?: boolean;
+  volume?: number;
 };

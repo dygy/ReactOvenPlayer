@@ -76,10 +76,16 @@ export type ReactOvenPlayerState = {
     library: OvenPlayer;
     instance: OvenPlayerInstance;
     version: string;
-    stateObject: OvenPlayerEvents["stateChanged"];
+    stateObject?: OvenPlayerEvents["stateChanged"];
+    quality?: OvenPlayerQuality;
+    isAutoQuality?: boolean;
+    volume?: number;
 };
 ```
 1. library of ovenplayer
 2. player instance (not reactive, from ovenplayer)
 3. version of ovenplayer
 4. state object, what is current state and what is last state
+5. current quality as object. Bitrate, label, index, etc.
+6. is current quality are auto
+7. volume level in number %

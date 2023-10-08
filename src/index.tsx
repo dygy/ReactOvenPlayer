@@ -15,13 +15,56 @@ const pastOldState = (state: ReactOvenPlayerState | null) => {
 const ReactOvenPlayer = memo((props: ReactOvenPlayerProps) => {
   useEffect(() => {
     let timeout: NodeJS.Timeout | undefined;
+    const onStateChange = props.setState;
     const player = OvenPlayer.create(ovenPlayerId, props.config);
+
+    if (typeof onStateChange === "function") {
+      player.on("volumeChanged", (volume) => {
+        onStateChange(
+          (state) =>
+            ({
+              ...state,
+              volume: volume,
+            }) as ReactOvenPlayerState,
+        );
+      });
+      player.on("qualityLevelChanged", (quality) => {
+        const selectedQuality = player
+          .getQualityLevels()
+          .find((elem) => elem.index == quality.currentQuality);
+        onStateChange(
+          (state) =>
+            ({
+              ...state,
+              quality: selectedQuality,
+              isAutoQuality: quality.isAuto,
+            }) as ReactOvenPlayerState,
+        );
+      });
+
+      player.on("stateChanged", (stateObject) => {
+        onStateChange(
+          (state) =>
+            ({
+              ...pastOldState(state),
+              stateObject,
+            }) as ReactOvenPlayerState,
+        );
+      });
+
+      onStateChange((state) => ({
+        ...state,
+        instance: player,
+        library: OvenPlayer,
+        version: player.getVersion(),
+      }));
+    }
 
     if (props.isAutoReconnect) {
       player.on("error", () => {
         timeout = setTimeout(() => {
           const player = OvenPlayer.create(ovenPlayerId, props.config);
-          props.setState?.(
+          onStateChange?.(
             (state) =>
               ({
                 ...pastOldState(state),
@@ -32,23 +75,6 @@ const ReactOvenPlayer = memo((props: ReactOvenPlayerProps) => {
       });
     }
 
-    player.on("stateChanged", (stateObject) => {
-      props.setState?.(
-        (state) =>
-          ({
-            ...pastOldState(state),
-            stateObject,
-          }) as ReactOvenPlayerState,
-      );
-    });
-
-    props.setState?.((state) => ({
-      ...state,
-      instance: player,
-      library: OvenPlayer,
-      version: player.getVersion(),
-    }));
-
     return () => {
       if (props.isAutoReconnect) {
         player.off("error");
@@ -56,6 +82,7 @@ const ReactOvenPlayer = memo((props: ReactOvenPlayerProps) => {
       player.off("stateChanged");
       OvenPlayer.removePlayer(player);
       clearTimeout(timeout);
+      onStateChange?.(null);
     };
   }, []);
 
